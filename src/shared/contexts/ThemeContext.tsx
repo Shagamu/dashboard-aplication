@@ -12,7 +12,7 @@ const ThemeContext = createContext({} as IThemeContextData);
 
 export const useAppThemeContext = () => {
   return useContext(ThemeContext);
-}
+};
 
 type Props = {
   children?: React.ReactNode,
