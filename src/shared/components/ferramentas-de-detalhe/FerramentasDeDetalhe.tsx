@@ -1,4 +1,4 @@
-import { Paper, Button, Box, useTheme, Icon, Divider } from "@mui/material";
+import { Paper, Button, Box, useTheme, Icon, Divider, Skeleton } from "@mui/material";
 import { FC } from "react";
 
 interface IFerramentasDeDetalheProps {
@@ -9,6 +9,12 @@ interface IFerramentasDeDetalheProps {
   mostrarBotaoApagar?: boolean;
   mostrarBotaoSalvar?: boolean;
   mostrarBotaoSalvarEFechar?: boolean;
+
+  mostrarBotaoNovoCarregando?: boolean;
+  mostrarBotaoVoltarCarregando?: boolean;
+  mostrarBotaoApagarCarregando?: boolean;
+  mostrarBotaoSalvarCarregando?: boolean;
+  mostrarBotaoSalvarEFecharCarregando?: boolean;
 
   aoClicarEmNovo?: () => void;
   aoClicarEmVoltar?: () => void;
@@ -25,6 +31,12 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
   mostrarBotaoApagar = true,
   mostrarBotaoSalvar = true,
   mostrarBotaoSalvarEFechar = false,
+
+  mostrarBotaoNovoCarregando = false,
+  mostrarBotaoVoltarCarregando = false,
+  mostrarBotaoApagarCarregando = false,
+  mostrarBotaoSalvarCarregando = false,
+  mostrarBotaoSalvarEFecharCarregando = false,
 
   aoClicarEmNovo,
   aoClicarEmVoltar,
@@ -47,7 +59,7 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
       component={Paper}
     >
 
-      { mostrarBotaoSalvar && (
+      {(mostrarBotaoSalvar && !mostrarBotaoSalvarCarregando) && (
         <Button
             color="primary"
             variant="contained"
@@ -59,7 +71,11 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
         </Button>
       )}
 
-      { mostrarBotaoSalvarEFechar && (
+      {mostrarBotaoSalvarCarregando && ( 
+        <Skeleton width={110} height={60}/>
+      )}
+
+      {(mostrarBotaoSalvarEFechar && !mostrarBotaoSalvarEFecharCarregando) && (
         <Button
           color="primary"
           variant="outlined"
@@ -71,7 +87,11 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
         </Button>
       )}
 
-      { mostrarBotaoApagar && (
+      {mostrarBotaoSalvarEFecharCarregando && ( 
+        <Skeleton width={180} height={60}/>
+      )}
+
+      {(mostrarBotaoApagar && !mostrarBotaoApagarCarregando) && (
         <Button
           color="primary"
           variant="outlined"
@@ -83,7 +103,11 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
         </Button>
       )}
 
-      {mostrarBotaoNovo && (
+      {mostrarBotaoApagarCarregando && ( 
+        <Skeleton width={110} height={60}/>
+      )}
+
+      {(mostrarBotaoNovo && !mostrarBotaoNovoCarregando) && (
         <Button
           color="primary"
           variant="outlined"
@@ -95,12 +119,16 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
         </Button>
       )}
 
+      {mostrarBotaoNovoCarregando && ( 
+        <Skeleton width={110} height={60}/>
+      )}
+
         <Divider 
           variant="middle"
           orientation="vertical"
         />
 
-      {mostrarBotaoVoltar && (
+      {(mostrarBotaoVoltar && !mostrarBotaoVoltarCarregando) && (
         <Button
           color="primary"
           variant="outlined"
@@ -111,6 +139,11 @@ export const FerramentasDeDetalhe: FC<IFerramentasDeDetalheProps> = ({
           Voltar
         </Button>
       )}
+
+      {mostrarBotaoVoltarCarregando && ( 
+        <Skeleton width={110} height={60}/>
+      )}
+
     </Box>
   );
 };
